@@ -1,0 +1,13 @@
+service: default
+runtime: nodejs12
+env: standard
+instance_class: F1
+automatic_scaling:
+  min_instances: 0
+  max_instances: 1
+  target_cpu_utilization: 0.80
+  min_pending_latency: 5000ms
+  max_pending_latency: automatic
+  max_concurrent_requests: 70
+  target_throughput_utilization: 0.80
+  

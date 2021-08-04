@@ -1,8 +1,14 @@
-function Loading() {
+function Loading(props: any) {
     return (
-        <div>
-            Cargando
-        </div>
+        <>
+            {
+                props.show &&
+                <div id="loading">
+                    Cargando...
+                </div>
+            }
+        </>
+
     );
 }
 

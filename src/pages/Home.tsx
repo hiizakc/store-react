@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import ProductsService from '../services/ProductsService';
 import ICategory from '../types/ICategory';
 import { Helmet } from "react-helmet";
+import Loading from '../components/Loading';
 
 type amountProduct = { [key: number]: any };
 const amountObject: amountProduct = {};
@@ -29,6 +30,7 @@ type Props = StateProps & DispatchProp;
 
 function Home(props: Props) {
 
+    const [isLoading, setIsLoading] = useState(true);
     const [categories, setCategories] = useState<ICategory[]>([]);
     const productsService = new ProductsService();
 
@@ -36,6 +38,8 @@ function Home(props: Props) {
 
         const categories = await productsService.getAllByCategory();
         setCategories(categories);
+
+        setIsLoading(false);
 
     }, []);
 
@@ -51,6 +55,7 @@ function Home(props: Props) {
 
     return (
         <div className="row container-page">
+            <Loading show={isLoading} />
             <Helmet>
                 <title>My Store | Productos</title>
             </Helmet>
@@ -91,7 +96,7 @@ function Home(props: Props) {
                     </>
                 ))
             }
-        </div>
+        </div >
     );
 }
 
